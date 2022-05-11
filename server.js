@@ -20,7 +20,7 @@ app.use(express.json())
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/*', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)

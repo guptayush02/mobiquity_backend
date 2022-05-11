@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const config = require("../../config/envConfig")
 const bcrypt = require('bcrypt')
 
-module.exports.sendResponse = (res, code, body) => {
-  res.send(code, { code, body });
+module.exports.sendResponse = (res, code, message, body) => {
+  res.send(code, { code, message, body });
 }
 
 module.exports.createJwt = (user) => {
@@ -15,8 +15,6 @@ module.exports.comparePassword = (password, userPassword) => {
 }
 
 module.exports.createPassword = (password) => {
-  console.log("config-->", config)
   const {salt} = config
-  console.log("salt-->", salt)
   return bcrypt.hashSync(password, salt)
 }
