@@ -17,13 +17,16 @@
   },
   "homepage": "https://github.com/guptayush02/file_upload_backend#readme",
   "dependencies": {
+    "aws-sdk": "^2.1133.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "path": "^0.12.7",
-    "sequelize": "^6.19.0"
+    "sequelize": "^6.19.0",
+    "sharp": "^0.30.4"
   }
 }
