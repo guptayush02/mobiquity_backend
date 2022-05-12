@@ -29,6 +29,9 @@ It will create a database and create all tables if not exists
 - Create simlink with frontend build folder
 - `ln -s ~/Documents/projects/file_upload_frontend/build public`
 - move all files from build to public
+- Then run `node server.js`
+
+- `Open localhost:3000 to the browser`
 
 
 # Curl:
