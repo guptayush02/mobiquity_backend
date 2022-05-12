@@ -12,7 +12,8 @@ module.exports = (app) => {
   router.post('/upload-file', authentication, fileController.upload)
   router.get('/files', authentication, fileController.getFiles)
   router.delete('/file/:id', authentication, fileController.delete)
-  router.get('/public-file', authentication, fileController.publicFile)
+  
+  router.get('/public-file', fileController.publicFile)
 
   app.use('/api/v1', router)
 }

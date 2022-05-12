@@ -7,7 +7,7 @@ module.exports.authentication = async(req, res, next) => {
   try {
     const { token } = req.headers
     if (!token) {
-      return sendResponse(res, 401, {message: `token dows not exists`})
+      return sendResponse(res, 401, {message: `token does not exists`})
     }
     jwt.verify(token, config.TokenSecret, async(err, user) => {
       if (err) return res.sendStatus(403)
