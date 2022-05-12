@@ -25,7 +25,7 @@ It will create a database and create all tables if not exists
 # Undo migration
 -  `sequelize-cli db:migrate:undo`
 
-# Serve Project wirh frontend
+# Serve Project with frontend
 - Create simlink with frontend build folder
 - `ln -s ~/Documents/projects/file_upload_frontend/build public`
 - move all files from build to public
