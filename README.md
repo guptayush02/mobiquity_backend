@@ -25,7 +25,7 @@ It will create a database and create all tables if not exists
 # Undo migration
 -  `sequelize-cli db:migrate:undo`
 
-# Serve Project wirh frontend
+# Serve Project with frontend
 - Create simlink with frontend build folder
 - `ln -s ~/Documents/projects/file_upload_frontend/build public`
 - move all files from build to public
@@ -89,6 +89,5 @@ curl --location --request DELETE 'localhost:3000/api/v1/file/2' \
 - Get Public file URL
 `
 curl --location --request GET 'localhost:3000/api/v1/public-file?id=1' \
---header 'token: eyJhbGciOiJIUzI1NiJ9.YXl1c2hAZ21haWwuY29t.iIteTxTYSFAR1wTx3LapIXYIjIfCARaMWJjEnFxgdec' \
 --header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST'
 `
