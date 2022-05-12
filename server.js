@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const path = require("path")
+const fileupload = require("express-fileupload");
 
 const app = express()
 
@@ -16,6 +17,8 @@ app.use(cors(corsOptions))
 
 // parse requests of content-type - application/json
 app.use(express.json())
+
+app.use(fileupload())
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))

@@ -1,47 +1,22 @@
 const fileDao = require("../dbQueries/fileDao")
-const { sendResponse, createJwt, comparePassword, createPassword } = require("../utils/utils")
-const AWS = require('aws-sdk')
-const fs = require('fs')
+const { sendResponse, createJwt, comparePassword, createPassword, fileUpload } = require("../utils/utils")
 
 module.exports.upload = async(req, res) => {
   try {
-    const { uploadedFile, title, description, uploadedFileName, file } = req.body
-    const { id } = req.user
-    if (!uploadedFile || !title || !uploadedFileName) {
-      return sendResponse(res, 400, `File not found`)
-    }
-    AWS.config.update({ accessKeyId: "AKIAQCOSDMZIKJOLB2V6", secretAccessKey: "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" })
-    let s3 = new AWS.S3()
-    const buf = Buffer.from(uploadedFile, 'base64');
-    const newFile = uploadedFileName.replace(/ /g, "").split(".")
-    const params = {
-      Bucket: 'fileuploadsystem',
-      Key: `${newFile[0]}.${newFile[newFile.length - 1 ]}`,
-      Body: buf
-    }
-    const result = await uploadFile(s3, params)
-    let body = {
-      title,
-      description,
+    const { files, body, user } = req
+    const { file } = files
+    const { id } = user
+    const url = await fileUpload(file)
+    let data = {
+      ...body,
       userId: id,
-      url: result
+      url
     }
-    await fileDao.create(body)
+    await fileDao.create(data)
     return sendResponse(res, 200, `File upload successfully`)
   } catch (err) {
     return sendResponse(res, 404, `Error cought in fileController [upload] function catch block ${err}`)
   }
-}
-
-const uploadFile = (s3, params) => {
-  return new Promise((resolve, reject) => {
-    s3.upload(params, (err, data) => {
-      if (err) {
-        reject(err)
-      }
-      resolve(data.Location)
-    })
-  })
 }
 
 module.exports.getFiles = async(req, res) => {
@@ -49,7 +24,7 @@ module.exports.getFiles = async(req, res) => {
     const { id } = req.user
     const where = { userId: id }
     const files = await fileDao.findFilesByUserId(where)
-    return sendResponse(res, 200, `user uoloaded files` , {files})
+    return sendResponse(res, 200, `user uploaded files` , {files})
   } catch (err) {
     return sendResponse(res, 404, `Error cought in fileController [getFiles] function catch block ${err}`)
   }
