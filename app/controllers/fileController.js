@@ -14,11 +14,10 @@ module.exports.upload = async(req, res) => {
     let s3 = new AWS.S3()
     const buf = Buffer.from(uploadedFile, 'base64');
     const newFile = uploadedFileName.replace(/ /g, "").split(".")
-    const fileContent = fs.readFileSync(file);
     const params = {
       Bucket: 'fileuploadsystem',
-      Key: `${newFile[0]}.${newFile[1]}`,
-      Body: fileContent
+      Key: `${newFile[0]}.${newFile[newFile.length - 1 ]}`,
+      Body: buf
     }
     const result = await uploadFile(s3, params)
     let body = {
