@@ -18,10 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     url: DataTypes.STRING,
     isShareable: DataTypes.BOOLEAN,
+    privateShare: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'File',
   });
+  File.sync({ alter: true })
   return File;
 };

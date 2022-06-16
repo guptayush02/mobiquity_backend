@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "admin",
+    "email": "admin@admin.com",
+    "password": "$2b$10$2p22aQ/.LqhQpbknw6U58ucRLKqs3pI.l.HOCKyaZhQ2SrF30lvHa",
+    "token": "eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q"
+  }
+]

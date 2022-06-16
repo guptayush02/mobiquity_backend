@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "bigger_location": "Wegedorn-Zentrum",
+    "zipcode": "12524",
+    "city": "Berlin",
+    "street": "Semmelweißstraße 105",
+    "location": "Outdoor Eingangsbereich",
+    "type": "atm"
+  }
+]

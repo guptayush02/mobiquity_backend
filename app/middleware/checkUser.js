@@ -10,16 +10,13 @@ module.exports.authentication = async(req, res, next) => {
       return sendResponse(res, 401, {message: `token does not exists`})
     }
     jwt.verify(token, config.TokenSecret, async(err, user) => {
-      if (err) return res.sendStatus(403)
-      const where = { email: user }
-      const currentUser = await userDao.findOne(where)
+      const currentUser = await userDao.findOne(user)
       if (!currentUser) {
         return sendResponse(res, 403, {message: `Invalid token`})
       }
-  
-      req.user = currentUser.dataValues
+
+      req.user = currentUser
       delete req.user.password
-  
       next()
     })
   } catch (error) {
