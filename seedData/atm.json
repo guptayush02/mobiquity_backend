@@ -7,5 +7,14 @@
     "street": "Semmelweißstraße 105",
     "location": "Outdoor Eingangsbereich",
     "type": "atm"
+  },
+  {
+    "id": 2,
+    "bigger_location": "Wegedorn-Zentrum",
+    "zipcode": "12544",
+    "city": "Germany’s",
+    "street": "Semmelweißstreetße 15",
+    "location": "Outdoor Eingangsbereich",
+    "type": "atm"
   }
 ]

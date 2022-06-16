@@ -5,6 +5,10 @@ module.exports.create = async(req, res) => {
   try {
 
     const { body } = req
+    if (!body.length) {
+      return sendResponse(res, 400, `parameter missing`)
+    }
+
     const atms = atmDao.create(body)
 
     return sendResponse(res, 200, `Atm List get successfully`, atms)

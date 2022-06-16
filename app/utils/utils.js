@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const AWS = require('aws-sdk')
 
 module.exports.sendResponse = (res, code, message, body) => {
-  res.send(code, { code, message, body });
+  return res.send(code, { code, message, body });
 }
 
 module.exports.createJwt = (user) => {
