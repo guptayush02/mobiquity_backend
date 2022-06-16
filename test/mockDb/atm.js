@@ -28,4 +28,4 @@ const atm = {
   }
 }
 
-module.exports = {atm, token}
+module.exports = atm

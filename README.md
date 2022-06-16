@@ -24,6 +24,10 @@ It will create a database and create all tables if not exists
 
 - `Open localhost:3000 to the browser`
 
+# Run test cases
+- Run user controller test `npm run test test/userTest.js`
+- Run atm controller test `npm run test test//atmTest.js`
+
 
 # Deployment
 - ssh to aws ec2 server.

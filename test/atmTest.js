@@ -5,7 +5,7 @@ chai.use(chaiHttp);
 const server = require("../server")
 const req = require('./mockDb/atm')
 
-const token = 'eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q'
+let token = 'eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q'
 // We can group similar tests inside a describe block
 describe("ATM Controller", () => {
   before(() => {
