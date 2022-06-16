@@ -9,6 +9,10 @@ atmDao.create = (body) => {
 }
 
 atmDao.findAll = (city) => {
+  if (city === 'null' || !city) {
+    return atmLists
+  }
+
   return atmLists.filter((atmList) => {
     return atmList.city === city
   })

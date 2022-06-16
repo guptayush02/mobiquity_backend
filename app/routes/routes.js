@@ -14,5 +14,7 @@ module.exports = (app) => {
   router.delete('/atm/:id', authentication, atmController.delete)
   router.put('/atm/:id', authentication, atmController.update)
 
+  router.get('/city-list', authentication, atmController.cityList)
+
   app.use('/api/v1', router)
 }

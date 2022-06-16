@@ -6,7 +6,7 @@ const fileupload = require("express-fileupload");
 const app = express()
 
 const corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "http://localhost:3001"
 }
 
 app.use(express.json({limit: '50mb'}));

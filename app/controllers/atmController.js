@@ -34,7 +34,7 @@ module.exports.delete = async(req, res) => {
     const { id } = req.params
     const result = atmDao.delete(id)
 
-    return sendResponse(res, 200, `Atm List get successfully`, result)
+    return sendResponse(res, 200, `Atm List delete successfully`, result)
   } catch (err) {
     return sendResponse(res, 404, `Error cought in atmController [delete] function catch block ${err}`)
   }
@@ -47,8 +47,23 @@ module.exports.update = async(req, res) => {
     const { body } = req
     const atm = atmDao.findOneAndUpdate(Number(id), body)
 
-    return sendResponse(res, 200, `Atm List get successfully`, atm)
+    return sendResponse(res, 200, `Atm List update successfully`, atm)
   } catch (err) {
     return sendResponse(res, 404, `Error cought in atmController [update] function catch block ${err}`)
+  }
+}
+
+module.exports.cityList = async(req, res) => {
+  try {
+
+    const cityArray = []
+    const atms = atmDao.findAll()
+    atms.map((atm) => {
+      cityArray.push(atm.city)
+    })
+
+    return sendResponse(res, 200, `Atm List get cities list`, cityArray)
+  } catch (err) {
+    return sendResponse(res, 404, `Error cought in atmController [cityList] function catch block ${err}`)
   }
 }

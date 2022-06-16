@@ -1,5 +1,5 @@
 # Clone project
-- `git clone https://github.com/guptayush02/file_upload_backend.git`
+- `git clone https://github.com/guptayush02/mobiquity_backend.git`
 
 # Install dependency
 - `npm install`
@@ -16,22 +16,22 @@ TOKEN_SECRET=09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90
 - `node server.js` 
 It will create a database and create all tables if not exists
 
-# Create migration
-- `sequelize model:create --name <table_name> --attributes name:string,emai:string,password:string`
-
-# Run migration
-- `sequelize-cli db:migrate`
-
-# Undo migration
--  `sequelize-cli db:migrate:undo`
-
 # Serve Project with frontend
 - Create simlink with frontend build folder
-- `ln -s ~/Documents/projects/file_upload_frontend/build public`
+- ` ln -s ~/Documents/projects/mobiquity/frontend/build/ public/`
 - move all files from build to public
 - Then run `node server.js`
 
 - `Open localhost:3000 to the browser`
+
+
+# Deployment
+- ssh to aws ec2 server.
+- Go to the frontend and backend project.
+- Take pull from frontend and backend repo,
+- Make build on frontend project
+- Create simlink `ln -s <path_to_your_frontend_project>/build/ <path_to_your_backend_project>/public/`
+- Restart backend server
 
 
 # Curl:
@@ -40,11 +40,11 @@ It will create a database and create all tables if not exists
 `
 curl --location --request POST 'localhost:3000/api/v1/signup' \
 --header 'Content-Type: application/json' \
---header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST' \
+--header 'Cookie: r=nfcZOqylvcT6Rrsv; r=nfcZOqylvcT6Rrsv' \
 --data-raw '{
-    "name": "ayush",
-    "email": "ayush@gmail.com",
-    "password": "ayush"
+    "name": "admin",
+    "email": "admin1@admin.com",
+    "password": "qwerty@123"
 }'
 `
 
@@ -52,42 +52,60 @@ curl --location --request POST 'localhost:3000/api/v1/signup' \
 `
 curl --location --request POST 'localhost:3000/api/v1/login' \
 --header 'Content-Type: application/json' \
---header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST' \
+--header 'Cookie: r=nfcZOqylvcT6Rrsv' \
 --data-raw '{
-    "email": "ayush@gmail.com",
-    "password": "ayush"
+    "email": "admin@admin.com",
+    "password": "qwerty@123"
 }'
 `
 
-- File Upload
+- Get atm list
 `
-curl --location --request POST 'localhost:3000/api/v1/upload-file' \
+curl --location --request GET 'localhost:3000/api/v1/atm-lists?city=Berlin' \
+--header 'token: eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q' \
+--header 'Cookie: r=nfcZOqylvcT6Rrsv' \
+--data-raw ''
+`
+
+- Create atm
+`
+curl --location --request POST 'localhost:3000/api/v1/atm' \
+--header 'token: eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q' \
+--header 'Cookie: r=nfcZOqylvcT6Rrsv; r=nfcZOqylvcT6Rrsv' \
 --header 'Content-Type: application/json' \
---header 'token: eyJhbGciOiJIUzI1NiJ9.YXl1c2hAZ21haWwuY29t.iIteTxTYSFAR1wTx3LapIXYIjIfCARaMWJjEnFxgdec' \
---header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST' \
+--data-raw '[
+  {
+    "bigger_location": "Wegedorn-Zentrum",
+    "zipcode": "12524",
+    "city": "Berlin1",
+    "street": "Semmelweißstraße 105",
+    "location": "Outdoor Eingangsbereich",
+    "type": "atm"
+  }
+]
+'
+`
+
+- Delete atm
+`
+curl --location --request DELETE 'localhost:3000/api/v1/atm/1794' \
+--header 'token: eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q' \
+--header 'Cookie: r=nfcZOqylvcT6Rrsv; r=nfcZOqylvcT6Rrsv; r=nfcZOqylvcT6Rrsv' \
+--data-raw ''
+`
+
+- Update atm
+`
+curl --location --request PUT 'localhost:3000/api/v1/atm/1' \
+--header 'token: eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q' \
+--header 'Cookie: r=nfcZOqylvcT6Rrsv; r=nfcZOqylvcT6Rrsv; r=nfcZOqylvcT6Rrsv' \
+--header 'Content-Type: application/json' \
 --data-raw '{
-    "title": "test1",
-    "description": "test d",
-    "url": "https://jfjgj"
+    "bigger_location": "Wegedorn-Zentrum",
+    "zipcode": "12521",
+    "city": "Berlin",
+    "street": "Semmelweißstraße 105",
+    "location": "Outdoor Eingangsbereich",
+    "type": "atm"
 }'
-`
-
-- Get All Files
-`
-curl --location --request GET 'localhost:3000/api/v1/files' \
---header 'token: eyJhbGciOiJIUzI1NiJ9.YXl1c2hAZ21haWwuY29t.iIteTxTYSFAR1wTx3LapIXYIjIfCARaMWJjEnFxgdec' \
---header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST'
-`
-
-- Delete file
-`
-curl --location --request DELETE 'localhost:3000/api/v1/file/2' \
---header 'token: eyJhbGciOiJIUzI1NiJ9.YXl1c2hAZ21haWwuY29t.iIteTxTYSFAR1wTx3LapIXYIjIfCARaMWJjEnFxgdec' \
---header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST'
-`
-
-- Get Public file URL
-`
-curl --location --request GET 'localhost:3000/api/v1/public-file?id=1' \
---header 'Cookie: __profilin=p%3Dt; _session_id=b2e6a33b5cfdbd510d97543fafab7397; r=nfcZOqylvcT6Rrsv; request_method=POST'
 `
