@@ -19,7 +19,7 @@ It will create a database and create all tables if not exists
 # Serve Project with frontend
 - Create simlink with frontend build folder
 - ` ln -s ~/Documents/projects/mobiquity/frontend/build/ public/`
-- move all files from build to public
+- move all files from build to public folder
 - Then run `node server.js`
 
 - `Open localhost:3000 to the browser`
@@ -33,9 +33,37 @@ It will create a database and create all tables if not exists
 - Create simlink `ln -s <path_to_your_frontend_project>/build/ <path_to_your_backend_project>/public/`
 - Restart backend server
 
+# Sample json
+- users
+`
+[
+  {
+    "id": 1,
+    "name": "admin",
+    "email": "admin@admin.com",
+    "password": "$2b$10$2p22aQ/.LqhQpbknw6U58ucRLKqs3pI.l.HOCKyaZhQ2SrF30lvHa",
+    "token": "eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.1s1C2OmieDsVf1hOSt0ygeZk6WYXf9nX2uzTbDwbR4Q"
+  }
+]
+`
+
+- ATM details
+`
+[
+  {
+    "id": 1,
+    "bigger_location": "Wegedorn-Zentrum",
+    "zipcode": "12524",
+    "city": "Berlin",
+    "street": "Semmelweißstraße 105",
+    "location": "Outdoor Eingangsbereich",
+    "type": "atm"
+  }
+]
+`
+
 
 # Curl:
-
 - Signup:
 `
 curl --location --request POST 'localhost:3000/api/v1/signup' \
